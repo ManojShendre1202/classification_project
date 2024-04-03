@@ -1,0 +1,8 @@
+pandas
+scikit-learn
+torch
+pillow
+torchvision
+torchinfo
+streamlit
+ipykernel
