@@ -6,3 +6,7 @@ torchvision
 torchinfo
 streamlit
 ipykernel
+tqdm
+matplotlib
+visualkeras
+-e .
