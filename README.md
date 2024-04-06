@@ -13,6 +13,14 @@ Welcome to the Image Classification App for distinguishing between pizza, steak,
 ### Run the App:
 `streamlit run app.py`
 
+## To download the raw data and customize the classes use the below given code
+### To download the food101 complete dataset with 101 classes
+`cd food_image_classifier`
+`python ../src/food_image_classifier/pipeline/data_ingestion_pipeline.py`
+
+### To customize the classes use the following
+Change the "target classes" in the data_ingestion_pipeline.py file
+
 
 ### Upload Images:
 Once the app is running, you can upload images directly through the interface.
