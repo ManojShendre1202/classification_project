@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
-
+import torchvision.models as models
+from PIL import Image
+import torchvision.transforms as transforms 
 import torch
 
 def plot_training_curves(train_acc_history, val_acc_history, train_loss_history, val_loss_history):
@@ -53,19 +55,32 @@ def save_trained_model(model, save_path):
     torch.save(model.state_dict(), save_path)
     print(f"Model saved successfully to: {save_path}")
 
-import torch
-
-def load_model(model_path):
-    """Loads a trained PyTorch model from a saved file.
-
-    Args:
-        model_path (str): Path to the saved model file (.pth).
-
-    Returns:
-        nn.Module: The loaded PyTorch model.
-    """
-
-    model = torch.load(model_path)
-    model.eval()  # Set the model to evaluation mode
+def load_model():
+    # Load the model
+    model =  models.resnet18()  # Don't use pre-trained weights
+    num_ftrs = model.fc.in_features  # Adapt the last layer based on your classes
+    model.fc = torch.nn.Linear(num_ftrs, out_features=3)
+    pretrained_state_dict = torch.load('C:/datascienceprojects/food_image_classification/models/model_0_resnet.pth')
+    new_state_dict = {}
+    for key, param in pretrained_state_dict.items():
+        if key in model.state_dict():  # Filter for matching keys
+            new_state_dict[key] = param
+    model.load_state_dict(new_state_dict, strict=False)
+    model.eval() 
     return model
+
+def predict_image(image_path, model, transform):
+    image = Image.open(image_path)
+    image_tensor = transform(image)  # Use the 'transform' you defined earlier
+    image_tensor = image_tensor.unsqueeze_(0)  # Add batch dimension
+
+    with torch.no_grad():
+        output = model(image_tensor)
+        _, predicted = torch.max(output.data, 1)
+        return predicted.item()
+
+class_mapping = {0: 'pizza', 1: 'steak', 2: 'sushi'}  # Your dictionary
+
+def get_class_label(predicted_index):
+    return class_mapping.get(predicted_index, "Unknown")
 
