@@ -21,12 +21,14 @@ Welcome to the Image Classification App for distinguishing between pizza, steak,
 ### To customize the classes use the following
 Change the "target classes" in the data_ingestion_pipeline.py file
 
-
 ### Upload Images:
 Once the app is running, you can upload images directly through the interface.
 
 ### View Predictions:
 After uploading an image, the app will process it and provide predictions on whether it's a pizza, steak, or sushi.
+
+## To directly use the app use the below given link
+--> https://classificationproject-2jyehacnyggqvhg8hqxuqc.streamlit.app/
 
 ## Technologies Used
 Streamlit: Used to create the interactive web application.
