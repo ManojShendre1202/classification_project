@@ -60,7 +60,7 @@ def load_model():
     model =  models.resnet18()  # Don't use pre-trained weights
     num_ftrs = model.fc.in_features  # Adapt the last layer based on your classes
     model.fc = torch.nn.Linear(num_ftrs, out_features=3)
-    pretrained_state_dict = torch.load('C:/datascienceprojects/food_image_classification/models/model_0_resnet.pth')
+    pretrained_state_dict = torch.load('./models/model_0_resnet.pth')
     new_state_dict = {}
     for key, param in pretrained_state_dict.items():
         if key in model.state_dict():  # Filter for matching keys

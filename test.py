@@ -37,6 +37,6 @@ model, train_loss_history, train_acc_history, val_loss_history, val_acc_history 
 plot_training_curves(train_loss_history, train_acc_history, val_loss_history, val_acc_history)
 
 # saving the model
-save_path = 'C:/datascienceprojects/food_image_classification/models/model_2_resnet18.pth'  # Replace with your desired path
+save_path = './models/model_2_resnet18.pth'  # Replace with your desired path
 save_trained_model(model, save_path)    
 
